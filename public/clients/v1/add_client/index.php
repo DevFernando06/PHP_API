@@ -1,13 +1,7 @@
 <?php
-$httpVerb = $_SERVER['REQUEST_METHOD'];
-if($httpVerb !== 'POST'){
-    http_response_code(405);
-    echo json_encode([
-        'status' => 'error',
-        'code' => 405,
-        'message' => 'Method Not Allowed'
-    ]);
-    exit;
-}
+require_once "../../../../inc/init.php";
+Api::checkHTTPMethod('POST');
 
-echo "Metodo: $httpVerb";
+echo json_encode(['
+    status' => 'success'
+    ]);
