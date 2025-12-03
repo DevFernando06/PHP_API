@@ -18,4 +18,16 @@ class Api
         ]);
         exit;
     }
+    public static function successMessage($httpCode, $data)
+    {
+        http_response_code($httpCode);
+        echo json_encode([
+            'status' => 'success',
+            'code' => $httpCode,
+            'message' => 'success',
+            'data' => $data
+        ]);
+        exit;
+    }
+
 }
