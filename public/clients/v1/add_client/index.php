@@ -11,27 +11,8 @@ $request = json_decode(file_get_contents('php://input'), true);
 if (!is_array($request)) {
     Api::errorMessage(400, 'Os dados não foram enviados corretamente, tente novamente.');
 }
-if (!key_exists('name', $request)) {
-   Api::errorMessage(400, 'O campo name é obrigatório');
-}
-if (!key_exists('phone', $request)) {
-    Api::errorMessage(400, 'O campo phone é obrigatório')    ;
-}
-if (!key_exists('email', $request)) {
-    Api::errorMessage(400, 'O campo email é obrigatório');
-}
-if (!key_exists('address', $request)) {
-    Api::errorMessage(400, 'O campo address é obrigatório');
-}
-if (!key_exists('postalZip', $request)) {
-    Api::errorMessage(400, 'O campo postalZip é obrigatório');
-}
-if (!key_exists('region', $request)) {
-    Api::errorMessage(400, 'O campo region é obrigatório');
-}
-if (!key_exists('country', $request)) {
-    Api::errorMessage(400, 'O campo country é obrigatório');
-}
+$params = ['name', 'phone', 'email', 'address', 'postalZip', 'region', 'country'];
+Validation::validationParam($params, $request);
 
 $database = new Medoo(MYSQL);
 $insertData = [
